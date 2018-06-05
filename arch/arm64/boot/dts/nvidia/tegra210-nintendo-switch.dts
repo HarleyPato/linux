@@ -476,6 +476,7 @@
 			shutdown-gpios = <&gpio TEGRA_GPIO(H, 4) GPIO_ACTIVE_HIGH>;
 			// level correct?
 			device-wakeup-gpios = <&gpio TEGRA_GPIO(H, 3) GPIO_ACTIVE_LOW>;
+			max-speed = <3000000>;
 		};
 	};
 
