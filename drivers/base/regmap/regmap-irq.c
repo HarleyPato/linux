@@ -528,6 +528,12 @@ int regmap_add_irq_chip(struct regmap *map, int irq, int irq_flags,
 		d->mask_buf[i] = d->mask_buf_def[i];
 		reg = chip->mask_base +
 			(i * map->reg_stride * d->irq_reg_stride);
+
+		// Dirty workaround for Nvidia MAX77620 driver
+		if (strcmp(chip->name, "max77620-gpio") == 0 && reg == 0x00) {
+			continue;
+		}
+
 		if (chip->mask_invert)
 			ret = regmap_irq_update_bits(d, reg,
 					 d->mask_buf[i], ~d->mask_buf[i]);
